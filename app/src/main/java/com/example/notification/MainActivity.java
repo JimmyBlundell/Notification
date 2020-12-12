@@ -2,12 +2,9 @@ package com.example.notification;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -16,9 +13,7 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.Space;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -90,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
     public void createEvent(){
         Intent intent = new Intent(Intent.ACTION_INSERT,
                 CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.Events.TITLE, "This event is from \'Notification\' app built in your class!.");
+        intent.putExtra(CalendarContract.Events.TITLE, "Event from Notifications app in CS5590");
         intent.putExtra(CalendarContract.Events.DESCRIPTION,
-                "Learn Android!");
+                "Learning Android!");
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION,
-                "UMKC");
+                "KCMO");
         // set time to calendar
         Calendar startTime = Calendar.getInstance();
         startTime.set(year, month, day);
