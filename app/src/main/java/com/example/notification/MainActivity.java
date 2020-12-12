@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         displayDate = (TextView) findViewById(R.id.displayDate);
         simpleCalendar = findViewById(R.id.simpleCalendar);
         newEvent = findViewById(R.id.newEventButton);
-
-
         simpleCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int y, int m, int d) {
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 day = d;
             }
         });
-
         newEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         String formattedDate = df.format(c);
 
         displayDate.setText(String.format("Today's Date:\n%s", formattedDate));
-
         // Create the NotificationChannel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
