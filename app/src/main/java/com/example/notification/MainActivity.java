@@ -20,20 +20,20 @@ import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    // notificationId is a unique int for each notification that you must define
     public int notificationId = 1;
     public String CHANNEL_ID = "one";
 
     private TextView title;
     private TextView displayDate;
-
     private Calendar calendar = Calendar.getInstance();
     private CalendarView simpleCalendar;
-
     private Button newEvent;
 
     private int year, month, day;
@@ -68,19 +68,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
 
-        displayDate.setText(String.format("Today's Date:\n%s", String.valueOf(Calendar.getInstance().getTime())));
+        displayDate.setText(String.format("Today's Date:\n%s", formattedDate));
 
         // Create the NotificationChannel
-        // you should execute this code as soon as your app starts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
+            // Register the channel with the system
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
@@ -89,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
     public void createEvent(){
         Intent intent = new Intent(Intent.ACTION_INSERT,
                 CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.Events.TITLE, "This event is from \'Notification\' app.");
+        intent.putExtra(CalendarContract.Events.TITLE, "This event is from \'Notification\' app built in your class!.");
         intent.putExtra(CalendarContract.Events.DESCRIPTION,
-                "Learn Android Coding in Java");
+                "Learn Android!");
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION,
                 "UMKC");
         // set time to calendar
